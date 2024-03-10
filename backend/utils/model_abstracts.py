@@ -17,6 +17,7 @@ class User(
 
     class Meta:
         app_label = 'core'
+        #abstract = True
 
     email = models.EmailField(verbose_name="Email")
     first_name = models.CharField(verbose_name="FirstName", max_length=255)
@@ -25,6 +26,9 @@ class User(
                                                                         # .TextField() for longer
     is_deleted = models.BooleanField(default=False)   # if a user is no longer working at the hospital
     salary = models.IntegerField(default=3000)  # minimum wage idk
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
 
 	
     

@@ -1,4 +1,3 @@
-import uuid
 from django.db import models
 from utils.model_abstracts import Model, User
 
@@ -12,18 +11,18 @@ from utils.model_abstracts import Model, User
 class GeneralManager(User):
     class Meta:
         verbose_name_plural = "GeneralManagers"
-    employee_id = models.UUIDField(foreign_key=True, default=uuid.uuid4)
-    
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='gemeral_managers')
     
 class Doctor(User):
     class Meta:
         verbose_name_plural = "Doctors"
-    employee_id = models.UUIDField(foreign_key=True, default=uuid.uuid4)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='doctors')
     
 class Assistant(User):
     class Meta:
         verbose_name_plural = "Assistants"
-    employee_id = models.UUIDField(foreign_key=True, default=uuid.uuid4)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='assistants')
     
 
 class Patient(Model):
@@ -33,6 +32,12 @@ class Patient(Model):
     first_name = models.CharField(verbose_name="FirstName", max_length=255)
     last_name = models.CharField(verbose_name="LastName", max_length=255)
     email = models.EmailField(verbose_name="Email")
+
+    assistants = models.ManyToManyField(Assistant)
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
+
 	
 class Treatment(Model):
     class Meta:
@@ -41,15 +46,9 @@ class Treatment(Model):
     name = models.CharField(verbose_name="Name", max_length=255)
     description = models.CharField(verbose_name="Description", max_length=1023)
 
+    def __str__(self):
+        return f'{self.name}'
 
-# Associative table between Assistant and Patient 
-
-class AssistantPatient:
-    class Meta:
-        verbose_name_plural = "AssistantsPatients"
-    
-    assistant_id = models.UUIDField(foreign_key=True,verbose_name="AssistantID")
-    patient_id = models.UUIDField(foreign_key=True,verbose_name="PatientID")
 
 # Associative table between Doctor, Patient and Treatment
 #
@@ -62,7 +61,7 @@ class Recommends(Model):
     class Meta:
         verbose_name_plural = "Recommandations"
 
-    doctor_id = models.UUIDField(foreign_key=True,verbose_name="DoctorID")
-    patient_id = models.UUIDField(foreign_key=True,verbose_name="PatientID")
-    treatment_id = models.UUIDField(foreign_key=True,verbose_name="TreatmentID")
+    doctor = models.ForeignKey(Doctor, verbose_name="Doctor", on_delete=models.CASCADE)
+    patient = models.ForeignKey(Patient, verbose_name="Patient", on_delete=models.CASCADE)
+    treatment = models.ForeignKey(Treatment, verbose_name="TreatmentID", on_delete=models.CASCADE)
     days = models.IntegerField(verbose_name="Days")
