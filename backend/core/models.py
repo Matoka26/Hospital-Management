@@ -8,20 +8,22 @@ from utils.model_abstracts import Model, User
 # so that you can have modularity, you can alter parts of those
 # entities independently
 
-class GeneralManager(User):
+class GeneralManager(Model):
     class Meta:
         verbose_name_plural = "GeneralManagers"
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='gemeral_managers')
     
-class Doctor(User):
+class Doctor(Model):
     class Meta:
         verbose_name_plural = "Doctors"
+
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='doctors')
     
-class Assistant(User):
+class Assistant(Model):
     class Meta:
         verbose_name_plural = "Assistants"
+
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='assistants')
     
 

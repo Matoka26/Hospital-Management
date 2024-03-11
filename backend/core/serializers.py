@@ -13,6 +13,8 @@ from rest_framework.fields import (
 
 
 class UserSerializer(serializers.ModelSerializer):
+	username = CharField(required=True)
+	password = CharField(required=True)
 	email = EmailField(required=True)
 	first_name = CharField(required=True)
 	last_name = CharField(required=True)
@@ -22,14 +24,19 @@ class UserSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = models.User
-		fields = (
+		fields = [
+			'username',
+			'password',
+			'id',
+			'created',
+			'modified',
 			'email',
 			'first_name',
 			'last_name',
 			'address',
 			'is_deleted',
 			'salary',
-		)
+		]
 
 class GeneralManagerSerializer(UserSerializer):
 	class Meta:
@@ -51,11 +58,7 @@ class PatientSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = models.Patient
-		fields = (
-			'first_name',
-			'last_name',
-			'email',
-		)
+		fields = '__all__'
 
 class TreatmentSerializer(serializers.ModelSerializer):
 	name = CharField(required=True)
@@ -63,13 +66,13 @@ class TreatmentSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = models.Treatment
-		fields = (
-			'name',
-			'description'
-		)
+		fields = '__all__'
 
 class RecommendsSerializer(serializers.ModelSerializer):
-	doctor_id = UUIDField(required=True)
-	patient_id = UUIDField(required=True)
-	treatment_id = UUIDField(required=True)
+	#doctor_id = UUIDField(required=True)
+	#patient_id = UUIDField(required=True)
+	#treatment_id = UUIDField(required=True)
 	days = IntegerField(required=False) 
+	class Meta:
+		model = models.Recommends
+		fields = '__all__'

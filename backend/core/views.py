@@ -1,12 +1,11 @@
 from json import JSONDecodeError
 from django.http import JsonResponse
 from rest_framework.parsers import JSONParser
-from rest_framework import views, status
+from rest_framework.views import APIView, status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from core.models import (
-    Patient
-)
+from core.models import User
+
 from .serializers import (
     UserSerializer,
     PatientSerializer,
@@ -16,129 +15,73 @@ from .serializers import (
 
 # Ment to make a directory of Views and each class to
 # have it's file but had issues importing them
-'''
-class UserAPIView(views.APIView):
-    """
-    A simple APIView for creating user entires.
-    """
-    serializer_class = UserSerializer
 
-    def get_serializer_context(self):
-        return {
-            'request': self.request,
-            'format': self.format_kwarg,
-            'view': self
-        }
-
-    def get_serializer(self, *args, **kwargs):
-        kwargs['context'] = self.get_serializer_context()
-        return self.serializer_class(*args, **kwargs)
-
-    def create_user(self, request):
-        try:
-            data = JSONParser().parse(request)
-            serializer = UserSerializer(data=data)
-            if serializer.is_valid(raise_exception=True):
-                serializer.save()
-                return Response(serializer.data)
-            else:
-                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        except JSONDecodeError:
-            return JsonResponse({"result": "error","message": "Json decoding error"}, status=400)
-
-
-
-class PatientAPIView(views.APIView):
-
-    serializer_class = PatientSerializer
-
-    def get_serializer_context(self):
-        return {
-            'request': self.request,
-            'format': self.format_kwarg,
-            'view': self
-        }
-
-    def get_serializer(self, *args, **kwargs):
-        kwargs['context'] = self.get_serializer_context()
-        return self.serializer_class(*args, **kwargs)
-
-    def create_patient(self, request):
-        try:
-            data = JSONParser().parse(request)
-            serializer = PatientSerializer(data=data)
-            if serializer.is_valid(raise_exception=True):
-                serializer.save()
-                return Response(serializer.data)
-            else:
-                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        except JSONDecodeError:
-            return JsonResponse({"result": "error","message": "Json decoding error"}, status=400)
-
-
-class TreatmentAPIView(views.APIView):
-
-    serializer_class = TreatmentSerializer
-
-    def get_serializer_context(self):
-        return {
-            'request': self.request,
-            'format': self.format_kwarg,
-            'view': self
-        }
-
-    def get_serializer(self, *args, **kwargs):
-        kwargs['context'] = self.get_serializer_context()
-        return self.serializer_class(*args, **kwargs)
-
-    def create_treatment(self, request):
-        try:
-            data = JSONParser().parse(request)
-            serializer = TreatmentSerializer(data=data)
-            if serializer.is_valid(raise_exception=True):
-                serializer.save()
-                return Response(serializer.data)
-            else:
-                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        except JSONDecodeError:
-            return JsonResponse({"result": "error","message": "Json decoding error"}, status=400)
-
-class RecommendsAPIView(views.APIView):
-    serializer_class = RecommendsSerializer
-
-    def get_serializer_context(self):
-        return {
-            'request': self.request,
-            'format': self.format_kwarg,
-            'view': self
-        }
-
-    def get_serializer(self, *args, **kwargs):
-        kwargs['context'] = self.get_serializer_context()
-        return self.serializer_class(*args, **kwargs)
-
-    def create_recommandation(self, request):
-        try:
-            data = JSONParser().parse(request)
-            serializer = RecommendsSerializer(data=data)
-            if serializer.is_valid(raise_exception=True):
-                serializer.save()
-                return Response(serializer.data)
-            else:
-                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        except JSONDecodeError:
-            return JsonResponse({"result": "error","message": "Json decoding error"}, status=400)
-
-'''
-
-@api_view(['GET', ])
-def api_detail_view(request, slug):
-
-    try:
-        patient = Patient.objects.get(slug=slug)
-    except Patient.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
+class UserDetail(APIView):
+    '''
+    A simple Viewset for viewing all Users
+    '''
+    def get(self,request):
+        obj = User.objects.all()
+        serializer = UserSerializer(obj, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
     
-    if request.method == "GET":
-        serializer = PatientSerializer(patient)
-        return Response(serializer.data)
+    def post(self,request):
+        serializer = UserSerializer(data=request.data)
+        print()
+        print(serializer)
+        print()
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class UserInfo(APIView):
+    # get user by id
+    def get(self,request,id):
+        try:
+            obj = User.objects.get(id=id)
+        except User.DoesNotExist:
+            msg = {"msg":"user not found"}
+            return Response(msg, status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = UserSerializer(obj)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+            
+    # update user
+    def put(self,request,id):
+        try:
+            obj = User.objects.get(id=id)
+        except User.DoesNotExist:
+            msg = {"msg":"user not found"}
+            return Response(msg, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = UserSerializer(obj,data=request.data)        
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_205_RESET_CONTENT)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    # partial update user 
+    def patch(self,request,id):
+        try:
+            obj = User.objects.get(id=id)
+        except User.DoesNotExist:
+            msg = {"msg":"user not found"}
+            return Response(msg, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = UserSerializer(obj, data=request.data, partial=True)        
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_205_RESET_CONTENT)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    # delete user
+    def delete(self,request,id):
+        try:
+            obj = User.objects.get(id=id)
+        except User.DoesNotExist:
+            msg = {"msg":"user not found"}
+            return Response(msg, status=status.HTTP_404_NOT_FOUND)
+        
+        obj.delete()
+        return Response({"msg":"deleted user"}, status=status.HTTP_204_NO_CONTENT)
