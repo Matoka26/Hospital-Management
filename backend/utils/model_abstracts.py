@@ -1,19 +1,18 @@
 import uuid
 from django.db import models
+from django.utils import timezone
 from django_extensions.db.models import TimeStampedModel
 
 
 # Every model will inherit  this abstract class 
-class Model(models.Model):
+class Model(TimeStampedModel, models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-
+    created = models.DateTimeField(default=timezone.now, blank=True)
     class Meta:
         abstract = True
 
-class User(
-	TimeStampedModel, 
-	Model
-	):
+# At first i wanted it to be Base Class for Doctor, GeneralManager and Assistant
+class User(Model):
 
     class Meta:
         app_label = 'core'

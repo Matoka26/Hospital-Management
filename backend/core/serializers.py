@@ -40,15 +40,22 @@ class UserSerializer(serializers.ModelSerializer):
 
 class GeneralManagerSerializer(UserSerializer):
 	class Meta:
+		model = models.GeneralManager
 		abstract = False
+		fields = '__all__'
 
 class DoctorSerializer(UserSerializer):
 	class Meta:
+		model = models.Doctor
 		abstract = False
+		fields = '__all__'
 
 class AssistantSerializer(UserSerializer):
 	class Meta:
+		model = models.Assistant
 		abstract = False
+		fields = '__all__'
+		
 
 
 class PatientSerializer(serializers.ModelSerializer):
@@ -59,6 +66,8 @@ class PatientSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = models.Patient
 		fields = '__all__'
+		depth = 1
+	
 
 class TreatmentSerializer(serializers.ModelSerializer):
 	name = CharField(required=True)

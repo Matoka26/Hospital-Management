@@ -1,5 +1,6 @@
 from django.db import models
 from utils.model_abstracts import Model, User
+from django_extensions.db.models import TimeStampedModel
 
 # Ment to make a directory of Serializers and each class to
 # have it's file but had issues importing them
@@ -12,19 +13,19 @@ class GeneralManager(Model):
     class Meta:
         verbose_name_plural = "GeneralManagers"
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='gemeral_managers')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='gemeral_managers')
     
 class Doctor(Model):
     class Meta:
         verbose_name_plural = "Doctors"
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='doctors')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='doctors')
     
 class Assistant(Model):
     class Meta:
         verbose_name_plural = "Assistants"
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='assistants')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='assistants')
     
 
 class Patient(Model):
