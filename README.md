@@ -1,4 +1,10 @@
 # Hospital
+Add story here:
+
+The <b><i>conceptual schema</i></b> and the <b><i>entity/relationship schema</i></b> can be found in the <b><i>Hospital Diagram.drawio</b></i> file and can be opened with [draw.io](https://app.diagrams.net/).    
+
+<img src="https://github.com/Matoka26/Hospital-/assets/106425405/5bdb02d0-7dda-4004-9a47-f376dfa77371" length=700 width=1000 >
+
 ### Current root directoy
 ```
     hospital-\  <-- Root directory
@@ -127,4 +133,17 @@ To use the <b><i>GET(by id), PUT, PATCH, DELETE</b></i> endpoints you must add t
 http://127.0.0.1:8000/core/user/a3c9f5f1-2b55-4ec8-a312-7f85f506c9f2
 ```
 
-Read the names of the possible URL suffixes from the <b><i>backend/df_ospital/urls.py</b></i> file.
+Read the names of the possible URL suffixes from the <b><i>backend/drf_ospital/urls.py</b></i> file.  
+
+  ## Great sources of inspiration:
+  - [Django REST framework](https://www.django-rest-framework.org/) documentation
+  - [bobby-didcoding](https://github.com/bobby-didcoding/drf_course) 's course
+  - [CodingEntrepreneurs](https://www.youtube.com/watch?v=c708Nf0cHrs&t=2815s&ab_channel=CodingEntrepreneurs) 's course
+      
+### Other relevant links:
+  - [Codemy.com](https://youtube.com/playlist?list=PLCC34OHNcOtqW9BJmgQPPzUpJ8hl49AGy&si=rTx0mO6DSjuhChtW) 's playlist
+  - [admin panel](https://www.youtube.com/watch?v=qP1PMri9oq4&ab_channel=GeeksCoders)
+  - [hash password](https://www.youtube.com/watch?v=PSY6bI5fU9Y&ab_channel=FeelFreeToCode)
+  - [table relationships](https://www.youtube.com/watch?v=QB9gGEwxxM4&ab_channel=PrettyPrinted)
+  - [views](https://www.youtube.com/watch?v=DiSoVShaOLI&list=PLgCYzUzKIBE9Pi8wtx8g55fExDAPXBsbV&index=3&ab_channel=CodingWithMitch)
+
