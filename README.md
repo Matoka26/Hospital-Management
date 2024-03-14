@@ -32,7 +32,7 @@ The API should have the following components exposed:
 > This api is an open wound
 
 # Bonus (optional, but nice to have)
-- [ ] Use docker to run your application
+- [x] Use docker to run your application
 - [ ] Deploy the application over the internet
 - [ ] Document the API using the Open API standards
 
