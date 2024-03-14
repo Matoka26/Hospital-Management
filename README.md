@@ -185,3 +185,18 @@ Read the names of the possible URL suffixes from the <b><i>backend/drf_ospital/u
   - [table relationships](https://www.youtube.com/watch?v=QB9gGEwxxM4&ab_channel=PrettyPrinted)
   - [views](https://www.youtube.com/watch?v=DiSoVShaOLI&list=PLgCYzUzKIBE9Pi8wtx8g55fExDAPXBsbV&index=3&ab_channel=CodingWithMitch)
 
+
+Read the names of the possible URL suffixes from the <b><i>backend/drf_ospital/urls.py</b></i> file.  
+
+  ## Great sources of inspiration:
+  - [Django REST framework](https://www.django-rest-framework.org/) documentation
+  - [bobby-didcoding](https://github.com/bobby-didcoding/drf_course) 's course
+  - [CodingEntrepreneurs](https://www.youtube.com/watch?v=c708Nf0cHrs&t=2815s&ab_channel=CodingEntrepreneurs) 's course
+      
+### Other relevant links:
+  - [Codemy.com](https://youtube.com/playlist?list=PLCC34OHNcOtqW9BJmgQPPzUpJ8hl49AGy&si=rTx0mO6DSjuhChtW) 's playlist
+  - [admin panel](https://www.youtube.com/watch?v=qP1PMri9oq4&ab_channel=GeeksCoders)
+  - [hash password](https://www.youtube.com/watch?v=PSY6bI5fU9Y&ab_channel=FeelFreeToCode)
+  - [table relationships](https://www.youtube.com/watch?v=QB9gGEwxxM4&ab_channel=PrettyPrinted)
+  - [views](https://www.youtube.com/watch?v=DiSoVShaOLI&list=PLgCYzUzKIBE9Pi8wtx8g55fExDAPXBsbV&index=3&ab_channel=CodingWithMitch)
+
