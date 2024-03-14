@@ -1,8 +1,47 @@
-# Hospital
+# Goal
+Create a Rest API app to handle main activities in a hospital involving: Doctors, Patients, Assistants, and Treatments. The system should manage all those activities with the corresponding security in place. The ACL will contain 3 main roles: General Manager (has access to all activities), Doctor (has access to all his patients and can define new ones), and Assistant (has access to allocated patients, one patient can have multiple assistants). 
+Any management module, like Doctor Management, Patient Management …,  should have CRUD capabilities
 
-## Description
 
 
+The API should have the following components exposed:
+
+- [ ] Login
+- [ ] Doctor Management (done by the General manager)
+- [ ] Patient management (done by Doctor or General manager)
+- [ ] Assistant management (done by the General manager)
+- [ ] Treatment management (done by Doctor or General manager)
+- [ ] The treatment recommended by a doctor to a Patient (done by the Doctor)
+- [ ] Patient assignment to an Assistant (done by Doctor or General manager)
+- [ ] Treatment applied by an Assistant (Assistant only)
+- [ ] A report containing the list of all the Doctors and the associated patients and a section for statistics data (JSON) (accessed by the General manager)
+- [ ] A report with all the treatments applied to a Patient (JSON) (accessed by the General manager or Doctor)
+
+> **NOTE:**    
+> I've had issues implementing and testing the endpoints, so I've only made CRUD operations disregarding the role conditions
+
+# Requirements
+- [x] You can use any framework you like (Django REST framework)
+- [ ] Data must be persistent even if the server receives successive restarts.
+- [ ] The module should expose all basic functionalities described in the goal
+- [ ] Minimal test coverage for unit and integration test
+- [x] Include migration and fixture files
+- [ ] Document the vulnerabilities that may appear 
+ 
+> **NOTE:**  
+> This api is an open wound
+
+# Bonus (optional, but nice to have)
+- [ ] Use docker to run your application
+- [ ] Deploy the application over the internet
+- [ ] Document the API using the Open API standards
+
+
+
+
+The <b><i>conceptual schema</i></b> and the <b><i>entity/relationship schema</i></b> can be found in the <b><i>Hospital Diagram.drawio</b></i> file and can be opened with [draw.io](https://app.diagrams.net/).    
+
+<img src="https://github.com/Matoka26/Hospital-/assets/106425405/5bdb02d0-7dda-4004-9a47-f376dfa77371" length=700 width=1000 >
 
 ### Current root directoy
 ```
@@ -132,4 +171,17 @@ To use the <b><i>GET(by id), PUT, PATCH, DELETE</b></i> endpoints you must add t
 http://127.0.0.1:8000/core/user/a3c9f5f1-2b55-4ec8-a312-7f85f506c9f2
 ```
 
-Read the names of the possible URL suffixes from the <b><i>backend/df_ospital/urls.py</b></i> file.
+Read the names of the possible URL suffixes from the <b><i>backend/drf_ospital/urls.py</b></i> file.  
+
+  ## Great sources of inspiration:
+  - [Django REST framework](https://www.django-rest-framework.org/) documentation
+  - [bobby-didcoding](https://github.com/bobby-didcoding/drf_course) 's course
+  - [CodingEntrepreneurs](https://www.youtube.com/watch?v=c708Nf0cHrs&t=2815s&ab_channel=CodingEntrepreneurs) 's course
+      
+### Other relevant links:
+  - [Codemy.com](https://youtube.com/playlist?list=PLCC34OHNcOtqW9BJmgQPPzUpJ8hl49AGy&si=rTx0mO6DSjuhChtW) 's playlist
+  - [admin panel](https://www.youtube.com/watch?v=qP1PMri9oq4&ab_channel=GeeksCoders)
+  - [hash password](https://www.youtube.com/watch?v=PSY6bI5fU9Y&ab_channel=FeelFreeToCode)
+  - [table relationships](https://www.youtube.com/watch?v=QB9gGEwxxM4&ab_channel=PrettyPrinted)
+  - [views](https://www.youtube.com/watch?v=DiSoVShaOLI&list=PLgCYzUzKIBE9Pi8wtx8g55fExDAPXBsbV&index=3&ab_channel=CodingWithMitch)
+
