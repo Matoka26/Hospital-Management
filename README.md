@@ -37,9 +37,10 @@ The API should have the following components exposed:
 - [ ] Document the API using the Open API standards
 
 
+# Approach  
 
-
-The <b><i>conceptual schema</i></b> and the <b><i>entity/relationship schema</i></b> can be found in the <b><i>Hospital Diagram.drawio</b></i> file and can be opened with [draw.io](https://app.diagrams.net/).    
+  
+The <b><i>conceptual schema</i></b> and the <b><i>entity/relationship schema</i></b> can be found in the <b><i>Hospital Diagram.drawio</b></i> file and can be opened with [draw.io](https://app.diagrams.net/).      
 
 <img src="https://github.com/Matoka26/Hospital-/assets/106425405/5bdb02d0-7dda-4004-9a47-f376dfa77371" length=700 width=1000 >
 
