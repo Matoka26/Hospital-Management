@@ -58,8 +58,19 @@ The <b><i>conceptual schema</i></b> and the <b><i>entity/relationship schema</i>
         >server.py
 ```
 
-## 1. Installing dependencies  
+## 1.1 Using [Docker](https://www.docker.com/)
+Create the container
+```
+docker compose up --build
+```
+> **NOTE:**  
+> Might produce an error here, the manage.py file resides in the <b><i>backend</i></b> directory and the <b>CMD</b> field in the <b><i>dockerfile</i></b> is a little wrong 
 
+CTRL + Clink on the URL [http://127.0.0.1:8000/](http://127.0.0.1:8000/).
+
+
+## 1.2.1 Installing dependencies  
+- ### Creating a virtual environment
 Open a terminal to create the <b>virtual environment</b> called <b><i>venv</i></b>.
 
 ```
@@ -77,7 +88,7 @@ source venv/bin/activate
 
 Install dependencies.
 ```
-pip install -r backend/requirements.txt
+pip install -r requirements.txt
 ```
 
 Additionally (not mandatory) upgrade pip.
@@ -94,7 +105,7 @@ copy env.template .env
 cp env.template .env
 ```
 
-## 2. Run Server
+## 1.2.2 Run Server
 
 
 ### Current root directoy
@@ -139,7 +150,7 @@ CTRL + Clink on the URL [http://127.0.0.1:8000/](http://127.0.0.1:8000/).
 >```
 
 
-## 3. Admin Panel
+## 2. Admin Panel
 To creat an admin run
 ```
 python manage.py createsuperuser
@@ -157,7 +168,7 @@ Login with the <b>Username</b> and <b>Password</b>
   
 You now have access to the <b>admin panel</b> and can operate <b>CRUD</b> operations on the models of the app with more ease.
 
-## 4. URLs
+## 3. URLs
 You can access a view for each model by adding <b><i>/core/modelName/</b></i> to the end of the URL.  
 On this interface is exposed a field where you can 
 - <b><i>POST</b></i> new data to the model's table
@@ -199,4 +210,4 @@ Read the names of the possible URL suffixes from the <b><i>backend/drf_ospital/u
   - [hash password](https://www.youtube.com/watch?v=PSY6bI5fU9Y&ab_channel=FeelFreeToCode)
   - [table relationships](https://www.youtube.com/watch?v=QB9gGEwxxM4&ab_channel=PrettyPrinted)
   - [views](https://www.youtube.com/watch?v=DiSoVShaOLI&list=PLgCYzUzKIBE9Pi8wtx8g55fExDAPXBsbV&index=3&ab_channel=CodingWithMitch)
-
+  - [using docker](https://www.youtube.com/watch?v=BoM-7VMdo7s&ab_channel=CodeWithTomi)
